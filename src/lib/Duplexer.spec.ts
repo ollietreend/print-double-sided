@@ -36,9 +36,9 @@ describe('Duplexer', () => {
     const sideB = await pdfParse(await duplex.sideB);
     expect(sideB.numpages).toEqual(3);
     expect(sideB.text.trim().split("\n\n")).toEqual([
-      "Page two",
-      "Page four",
       // blank page
+      "Page four",
+      "Page two",
     ]);
   });
 
@@ -59,11 +59,11 @@ describe('Duplexer', () => {
     const sideB = await pdfParse(await duplex.sideB);
     expect(sideB.numpages).toEqual(5);
     expect(sideB.text.trim().split("\n\n")).toEqual([
-      "Page two",
-      "Page four",
-      "Page six",
-      "Page eight",
       "Page ten",
+      "Page eight",
+      "Page six",
+      "Page four",
+      "Page two",
     ]);
   });
 });

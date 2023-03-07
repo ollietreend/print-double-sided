@@ -5,7 +5,7 @@ import type { Sequence } from "./PageSequencer";
 export default class Duplexer {
   input: PDFDocument;
 
-  static async load(inputFile) {
+  static async load(inputFile: string | Uint8Array | ArrayBuffer) {
     const pdf = await PDFDocument.load(inputFile);
     return new Duplexer(pdf);
   }
@@ -25,13 +25,11 @@ export default class Duplexer {
   private async createSide(side: Sequence) {
     const output = await PDFDocument.create();
 
+    if (side.appendBlankPage) output.addPage();
+
     const pageIndices = side.pages.map((p) => (p - 1));
     const pages = await output.copyPages(this.input, pageIndices);
     pages.forEach((page) => { output.addPage(page) });
-
-    if (side.appendBlankPage) {
-      output.addPage();
-    }
 
     return output.save();
   }

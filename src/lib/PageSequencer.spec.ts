@@ -33,7 +33,7 @@ describe('PageSequencer', () => {
       appendBlankPage: false,
     });
     expect(subject.sideB).toEqual({
-      pages: [2, 4, 6, 8, 10, 12, 14, 16],
+      pages: [16, 14, 12, 10, 8, 6, 4, 2],
       appendBlankPage: false,
     });
   });
@@ -45,7 +45,7 @@ describe('PageSequencer', () => {
       appendBlankPage: false,
     });
     expect(subject.sideB).toEqual({
-      pages: [2, 4, 6, 8, 10, 12, 14, 16],
+      pages: [16, 14, 12, 10, 8, 6, 4, 2],
       appendBlankPage: true,
     });
   });

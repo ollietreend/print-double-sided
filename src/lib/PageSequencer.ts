@@ -19,7 +19,7 @@ export default class PageSequencer {
 
   get sideB(): Sequence {
     return {
-      pages: this.evenPages,
+      pages: this.evenPages.reverse(),
       appendBlankPage: (this.evenPages.length < this.oddPages.length),
     };
   }
