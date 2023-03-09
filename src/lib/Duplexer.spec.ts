@@ -2,6 +2,7 @@ import { expect, describe, it } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import Duplexer from './Duplexer';
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
+import comparePdf from 'compare-pdf';
 
 const fixture = (filename: string) => {
   return readFile(`test/fixtures/${filename}`);
@@ -66,4 +67,21 @@ describe('Duplexer', () => {
       "Page two",
     ]);
   });
+
+  // it('compares PDFs visually', async () => {
+  //   const file = await fixture('ten_page.pdf');
+  //   const duplex = await Duplexer.load(file);
+
+  //   const actualPdfFilename = "actual_output.pdf";
+  //   const baselinePdfFilename = "ten_page.pdf";
+  //   const actualPdfBuffer = await duplex.sideA;
+  //   const baselinePdfBuffer = file.buffer;
+
+  //   let comparisonResults = await new comparePdf()
+  //     .actualPdfBuffer(actualPdfBuffer, actualPdfFilename)
+  //     .baselinePdfBuffer(baselinePdfBuffer, baselinePdfFilename)
+  //     .compare();
+
+  //   console.log(comparisonResults);
+  // });
 });

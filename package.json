@@ -13,6 +13,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@tsconfig/svelte": "^3.0.0",
+    "compare-pdf": "^1.1.8",
     "pdf-parse": "^1.1.1",
     "svelte": "^3.55.1",
     "svelte-check": "^2.10.3",
