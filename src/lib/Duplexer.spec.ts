@@ -68,20 +68,41 @@ describe('Duplexer', () => {
     ]);
   });
 
-  // it('compares PDFs visually', async () => {
-  //   const file = await fixture('ten_page.pdf');
-  //   const duplex = await Duplexer.load(file);
+  it('compares PDFs visually', async () => {
+    const file = await fixture('ten_page.pdf');
+    const duplex = await Duplexer.load(file);
 
-  //   const actualPdfFilename = "actual_output.pdf";
-  //   const baselinePdfFilename = "ten_page.pdf";
-  //   const actualPdfBuffer = await duplex.sideA;
-  //   const baselinePdfBuffer = file.buffer;
+    const actualPdfFilename = "actual_output.pdf";
+    const baselinePdfFilename = "ten_page.pdf";
+    const actualPdfBuffer = await duplex.sideA;
+    const baselinePdfBuffer = file.buffer;
 
-  //   let comparisonResults = await new comparePdf()
-  //     .actualPdfBuffer(actualPdfBuffer, actualPdfFilename)
-  //     .baselinePdfBuffer(baselinePdfBuffer, baselinePdfFilename)
-  //     .compare();
+    const config = {
+      paths: {
+        actualPdfRootFolder: process.cwd() + '/data/actualPdfs',
+        baselinePdfRootFolder: process.cwd() + '/data/baselinePdfs',
+        actualPngRootFolder: process.cwd() + '/data/actualPngs',
+        baselinePngRootFolder: process.cwd() + '/data/baselinePngs',
+        diffPngRootFolder: process.cwd() + '/data/diffPngs'
+      },
+      settings: {
+        imageEngine: 'native',
+        density: 100,
+        quality: 70,
+        tolerance: 0,
+        threshold: 0.05,
+        cleanPngPaths: true,
+        matchPageCount: true,
+        disableFontFace: true,
+        verbosity: 0
+      }
+    };
 
-  //   console.log(comparisonResults);
-  // });
+    let comparisonResults = await new comparePdf(config)
+      .actualPdfBuffer(actualPdfBuffer, actualPdfFilename)
+      .baselinePdfBuffer(baselinePdfBuffer, baselinePdfFilename)
+      .compare();
+
+    console.log(comparisonResults);
+  });
 });
